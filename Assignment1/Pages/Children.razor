@@ -1,0 +1,81 @@
+﻿@page "/AllChildren"
+
+
+@using Assignment1.Data
+@using Models
+
+
+<h3>Children</h3><br>
+<br>
+<label for="fname">Search: </label>
+<input type="text" @bind-value="filter" id="fname" name="fname"><br><br>
+<br>
+<table style="width:100%">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+        <th>Hair Color</th>
+        <th>Eye Color</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>Sex</th>
+        <th>Interest</th>
+        <th>Interest Description</th>
+        <th>Pet</th>
+        <th>Pet Species</th>
+        <th>Pet Age</th>
+    </tr>
+    
+    @if (filter != null)
+    {
+        List<Child> list = adapter.getChildren();
+        @foreach (var child in list)
+        {
+            if (child.FirstName.Contains(filter) || child.LastName.Contains(filter))
+            {
+                <tr>
+                    <td>@child.FirstName</td>
+                    <td>@child.LastName</td>
+                    <td>@child.Age</td>
+                    <td>@child.HairColor</td>
+                    <td>@child.EyeColor</td>
+                    <td>@child.Weight</td>
+                    <td>@child.Height</td>
+                    <td>@child.Sex</td>
+                    <td>@child.Interests[0].Type</td>
+                            <td>@child.Interests[0].Description</td>
+                            <td>@child.Pets[0].Name</td>
+                            <td>@child.Pets[0].Species</td>
+                            <td>@child.Pets[0].Age</td>
+                </tr>
+            }
+        }
+    }
+    else
+    {
+        @foreach (var child in adapter.getChildren())
+        {
+            <tr>
+                <td>@child.FirstName</td>
+                                    <td>@child.LastName</td>
+                                    <td>@child.Age</td>
+                                    <td>@child.HairColor</td>
+                                    <td>@child.EyeColor</td>
+                                    <td>@child.Weight</td>
+                                    <td>@child.Height</td>
+                                    <td>@child.Sex</td>
+                                    <td>@child.Interests[0].Type</td>
+                                            <td>@child.Interests[0].Description</td>
+                                            <td>@child.Pets[0].Name</td>
+                                            <td>@child.Pets[0].Species</td>
+                                            <td>@child.Pets[0].Age</td>
+            </tr>
+        }
+    }
+</table>
+
+@code {
+    Adapter adapter = new Adapter();
+    String filter;
+}

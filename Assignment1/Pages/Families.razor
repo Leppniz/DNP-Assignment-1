@@ -1,0 +1,37 @@
+﻿@page "/Families"
+
+
+@using Assignment1.Data
+@using Models
+
+
+<h3>Families</h3><br>
+<br>
+<br>
+<table style="width:100%">
+    <tr>
+        <th>Last Name</th>
+        <th>Streetname</th>
+        <th>House Number</th>
+    </tr>
+    
+    @if (true)
+    {
+        List<Family> list = adapter.getFamilies();
+        @foreach (var family in list)
+        {
+            <tr>
+                    <td>@family.Adults[0].LastName</td>
+                    <td>@family.StreetName</td>
+                    <td>@family.HouseNumber</td>
+            </tr>
+            
+        }
+    }
+   
+</table>
+
+@code {
+    Adapter adapter = new Adapter();
+    String filter;
+}

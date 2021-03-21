@@ -1,0 +1,85 @@
+﻿@page "/AddAdult"
+@attribute [Authorize(Policy = "MustBeAdmin")]
+@using System.Security.Claims
+@using Models
+@using System.Reflection.Emit
+@using Assignment1.Data
+@using FileData
+
+<AuthorizeView>
+ <NotAuthorized>
+  <h3>You need to log in to edit data!</h3>
+ </NotAuthorized>
+ <Authorized>
+  <h1>Add adult:</h1>
+  <br>
+  <label for="fname">First name:</label><br>
+  <input type="text" @bind="fname" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" @bind="@lname" id="lname" name="lname"><br><br>
+  <label for="haircolor">Hair Color:</label><br>
+  <input type="text" @bind="haircolor" id="haircolor" name="haircolor"><br><br>
+  <label for="eyecolor">Eye Color:</label><br>
+  <input type="text" @bind="eyecolor" id="eyecolor" name="eyecolor"><br><br>
+  <label for="age">Age:</label><br>
+  <input type="text" @bind="age" id="age" name="age"><br><br>
+  <label for="weight">Weight:</label><br>
+  <input type="text" @bind="weight" id="weight" name="weight"><br><br>
+  <label for="height">Height:</label><br>
+  <input type="text" @bind="height" id="height" name="height"><br><br>
+  <label for="sex">Sex:</label><br>
+  <input type="text" @bind="sex" id="sex" name="sex"><br><br>
+  <label for="job">Job:</label><br>
+  <input type="text" @bind="jobtitle" id="job" name="job"><br><br>
+  <label for="salary">Salary:</label><br>
+  <input type="text" @bind="salary" id="salary" name="salary"><br><br>
+  <label id="fields" for="fields">Remember! Fields cannot be empty!</label><br>
+  <input type="submit" @onclick="addNewAdult" value="Save"><br><br>
+ </Authorized>
+</AuthorizeView> 
+@code {
+ string fname;
+ string lname;
+ string haircolor;
+ string eyecolor;
+ int age;
+ int weight;
+ int height;
+ string sex;
+ string jobtitle;
+ int salary;
+ 
+ 
+ private void addNewAdult()
+ {
+  if (fname != null && lname != null && haircolor != null && eyecolor != null && sex != null && jobtitle != null)
+  {
+   Adult adult = new Adult()
+   {
+    FirstName = fname,
+    LastName = lname,
+    Age = age,
+    EyeColor = eyecolor,
+    HairColor = haircolor,
+    Height = height,
+    Id = age + height + weight,
+    Sex = sex,
+    Weight = weight,
+    JobTitle = new Job()
+    {
+     JobTitle = jobtitle,
+     Salary = salary,
+    },
+   };
+   FileContext fileContext = new FileContext();
+   fileContext.Adults.Add(adult);
+   fileContext.SaveChanges();
+
+  }
+  else
+  {
+   ;
+  }
+
+ }
+}

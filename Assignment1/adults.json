@@ -1,0 +1,77 @@
+[
+  {
+    "JobTitle": {
+      "JobTitle": "Manager",
+      "Salary": 2100
+    },
+    "Id": 273,
+    "FirstName": "Michael",
+    "LastName": "Scott",
+    "HairColor": "Black",
+    "EyeColor": "Green",
+    "Age": 34,
+    "Weight": 67,
+    "Height": 172,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Assistant To The Regional Manager",
+      "Salary": 1600
+    },
+    "Id": 281,
+    "FirstName": "Dwight",
+    "LastName": "Schrute",
+    "HairColor": "Brown",
+    "EyeColor": "Red",
+    "Age": 31,
+    "Weight": 68,
+    "Height": 182,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Paper Boy",
+      "Salary": 1000
+    },
+    "Id": 277,
+    "FirstName": "Daniel",
+    "LastName": "Tokendorf",
+    "HairColor": "Brown",
+    "EyeColor": "Green",
+    "Age": 24,
+    "Weight": 70,
+    "Height": 183,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Manager",
+      "Salary": 4000
+    },
+    "Id": 280,
+    "FirstName": "Anna",
+    "LastName": "Maria",
+    "HairColor": "Brown",
+    "EyeColor": "Blue",
+    "Age": 21,
+    "Weight": 67,
+    "Height": 192,
+    "Sex": "F"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Manager",
+      "Salary": 2100
+    },
+    "Id": 270,
+    "FirstName": "Anastasia",
+    "LastName": "Mathiensen",
+    "HairColor": "Black",
+    "EyeColor": "Brown",
+    "Age": 21,
+    "Weight": 67,
+    "Height": 182,
+    "Sex": "F"
+  }
+]

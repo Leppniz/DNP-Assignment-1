@@ -1,0 +1,48 @@
+[
+  {
+    "StreetName": "Mellbourne Vl",
+    "HouseNumber": 21,
+    "Adults": [
+      {
+        "JobTitle": {
+          "JobTitle": "Manager",
+          "Salary": 2100
+        },
+        "Id": 273,
+        "FirstName": "Michael",
+        "LastName": "Scott",
+        "HairColor": "Black",
+        "EyeColor": "Green",
+        "Age": 34,
+        "Weight": 67,
+        "Height": 172,
+        "Sex": "M"
+      }
+    ],
+    "Children": null,
+    "Pets": null
+  },
+  {
+    "StreetName": "Wall St",
+    "HouseNumber": 789,
+    "Adults": [
+      {
+        "JobTitle": {
+          "JobTitle": "Paper Boy",
+          "Salary": 1000
+        },
+        "Id": 277,
+        "FirstName": "Daniel",
+        "LastName": "Tokendorf",
+        "HairColor": "Brown",
+        "EyeColor": "Green",
+        "Age": 24,
+        "Weight": 70,
+        "Height": 183,
+        "Sex": "M"
+      }
+    ],
+    "Children": null,
+    "Pets": null
+  }
+]

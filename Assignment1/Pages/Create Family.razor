@@ -1,0 +1,179 @@
+﻿@page "/CreateFamily"
+@using FileData
+@using Models
+@using Assignment1.Data
+
+
+<AuthorizeView>
+ <NotAuthorized>
+  <h3>You need to log in to edit data!</h3>
+ </NotAuthorized>
+ <Authorized>
+ 
+
+     <h3>Create Family</h3><br>
+      <label for="salary">Street Name:</label><br>
+     <input type="text" @bind="streetname" id="job" name="job"><br><br>
+       <label for="salary">House Number:</label><br>
+       <input type="text" @bind="housenumber" id="salary" name="salary"><br><br>
+     
+<br>
+ <label for="fname">Search: </label>
+  <input type="text" @bind-value="filter" id="fname" name="fname"><br><br>
+<br>
+     <table style="width:100%">
+         <tr>
+             <th>Add</th>
+             <th>Firstname</th>
+             <th>Lastname</th>
+             <th>Age</th>
+             <th>Hair Color</th>
+             <th>Eye Color</th>
+             <th>Weight</th>
+             <th>Height</th>
+             <th>Sex</th>
+             <th>Job</th>
+             <th>Salary</th>
+         </tr>
+    
+         @if (filter != null)
+         {
+             List<Adult> list = adapter.getAdults();
+             @foreach (var adult in list)
+             {
+                 if (adult.FirstName.Contains(filter) || adult.LastName.Contains(filter))
+                 {
+                     isitdisabled = false;
+                     void addToFamily()
+                     {
+                         family.Adults.Add(adult);
+                     }
+                     ;
+                
+                     <tr>
+                         <td><button @onclick="@addToFamily" type="button" >+</button></td>
+                         <td>@adult.FirstName</td>
+                         <td>@adult.LastName</td>
+                         <td>@adult.Age</td>
+                         <td>@adult.HairColor</td>
+                         <td>@adult.EyeColor</td>
+                         <td>@adult.Weight</td>
+                         <td>@adult.Height</td>
+                         <td>@adult.Sex</td>
+                         <td>@adult.JobTitle.JobTitle</td>
+                         <td>@adult.JobTitle.Salary</td>
+                     </tr>
+               
+                 }
+             }
+         }
+         else
+         {
+             @foreach (var adult in adapter.getAdults())
+             {
+                 void addToFamily()
+                 {
+                     family.Adults.Add(adult);
+            
+                 }
+                 ;
+                 <tr>
+                     <td><button id="thisbutton" @onclick="@addToFamily" type="button" >+</button></td>
+                     <td>@adult.FirstName</td>
+                     <td>@adult.LastName</td>
+                     <td>@adult.Age</td>
+                     <td>@adult.HairColor</td>
+                     <td>@adult.EyeColor</td>
+                     <td>@adult.Weight</td>
+                     <td>@adult.Height</td>
+                     <td>@adult.Sex</td>
+                     <td>@adult.JobTitle.JobTitle</td>
+                     <td>@adult.JobTitle.Salary</td>
+                 </tr>
+             }
+         }
+     </table>
+     <br/>
+<table style="width:100%">
+    <tr>
+        <th>Add</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+        <th>Hair Color</th>
+        <th>Eye Color</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>Sex</th>
+        <th>Interest</th>
+        <th>Interest Description</th>
+        <th>Pet</th>
+        <th>Pet Species</th>
+        <th>Pet Age</th>
+    </tr>
+    
+    @if (true)
+    {
+        List<Child> list = adapter.getChildren();
+        @foreach (var child in list)
+        {
+            if (true)
+            {
+                void addToFamilyChild()
+                {
+                    family.Children.Add(child);
+            
+                }
+                ;
+                <tr>
+                    <td><button id="thisbutton" @onclick="@addToFamilyChild" type="button" >+</button></td>
+                    <td>@child.FirstName</td>
+                    <td>@child.LastName</td>
+                    <td>@child.Age</td>
+                    <td>@child.HairColor</td>
+                    <td>@child.EyeColor</td>
+                    <td>@child.Weight</td>
+                    <td>@child.Height</td>
+                    <td>@child.Sex</td>
+                    <td>@child.Interests[0].Type</td>
+                    <td>@child.Interests[0].Description</td>
+                    <td>@child.Pets[0].Name</td>
+                    <td>@child.Pets[0].Species</td>
+                    <td>@child.Pets[0].Age</td>
+                </tr>
+            }
+        }
+    }
+</table>
+<br/>
+<input type="submit" @onclick="createFamily" value="Create Family"><br><br>
+ 
+ </Authorized>
+</AuthorizeView> 
+
+@code {
+    String streetname;
+    int housenumber;
+    String filter;
+    Adapter adapter = new Adapter();
+    Family family = new Family();
+    bool isitdisabled = false;
+  
+    
+
+    public void createFamily()
+    {
+        if (streetname != null && housenumber != null)
+        {
+            family.HouseNumber = housenumber;
+            family.StreetName = streetname;
+            FileContext fileContext = new FileContext();
+            fileContext.Families.Add(family);
+            fileContext.SaveChanges(); 
+        }
+        
+    }
+    }
+ 
+ 
+

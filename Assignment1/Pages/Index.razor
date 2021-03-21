@@ -1,0 +1,50 @@
+﻿@page "/"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<AuthorizeView>
+    <NotAuthorized>
+        <h3>You must login as admin to edit data!</h3>
+        <br>
+        <br>
+        <label for="lname">Username:</label><br>
+        <input type="text" @bind-value="username" id="username" name="username"><br><br>
+        <label for="lname">Password:</label><br>
+        <input type="text"@bind-value="password" id="password" name="password"><br><br>
+        <input type="submit" @onclick="login" value="Login">
+    </NotAuthorized>
+    <Authorized>
+        <h1>Hello admin!</h1>
+   <br/><input type="submit" @onclick="logout" value="Log Out">
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    string username;
+    string password;
+
+
+    public void login()
+    {
+        try {
+            ((CustomAuthenticationStateProvider)AuthenticationStateProvider).ValidateLogin(username, password);
+            Console.WriteLine("Logged in succesfully");
+            NavigationManager.NavigateTo("/");
+        } catch (Exception e) {
+        }
+    }
+
+    public void logout()
+    {
+        try
+        {
+            ((CustomAuthenticationStateProvider)AuthenticationStateProvider).Logout();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+}

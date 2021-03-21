@@ -1,0 +1,72 @@
+﻿@page "/AllAdults"
+
+
+@using Assignment1.Data
+@using Models
+
+
+<h3>Adults</h3><br>
+<br>
+ <label for="fname">Search: </label>
+  <input type="text" @bind-value="filter" id="fname" name="fname"><br><br>
+<br>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+    <th>Hair Color</th>
+    <th>Eye Color</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>Sex</th>
+    <th>Job</th>
+    <th>Salary</th>
+  </tr>
+    
+    @if (filter != null)
+    {
+        List<Adult> list = adapter.getAdults();
+        @foreach (var adult in list)
+        {
+            if (adult.FirstName.Contains(filter) || adult.LastName.Contains(filter))
+            {
+                <tr>
+                    <td>@adult.FirstName</td>
+                    <td>@adult.LastName</td>
+                    <td>@adult.Age</td>
+                    <td>@adult.HairColor</td>
+                    <td>@adult.EyeColor</td>
+                    <td>@adult.Weight</td>
+                    <td>@adult.Height</td>
+                    <td>@adult.Sex</td>
+                    <td>@adult.JobTitle.JobTitle</td>
+                    <td>@adult.JobTitle.Salary</td>
+                </tr>
+            }
+        }
+    }
+    else
+    {
+        @foreach (var adult in adapter.getAdults())
+            {
+                <tr>
+                    <td>@adult.FirstName</td>
+                    <td>@adult.LastName</td>
+                    <td>@adult.Age</td>
+                    <td>@adult.HairColor</td>
+                    <td>@adult.EyeColor</td>
+                    <td>@adult.Weight</td>
+                    <td>@adult.Height</td>
+                    <td>@adult.Sex</td>
+                    <td>@adult.JobTitle.JobTitle</td>
+                    <td>@adult.JobTitle.Salary</td>
+                </tr>
+            }
+    }
+</table>
+
+@code {
+    Adapter adapter = new Adapter();
+    String filter;
+}
